@@ -7,7 +7,6 @@
       v-on:input="filtro = $event.target.value"
       placeholder="Pesquise aqui o prato"
     />
-    {{ filtro }}
     <ul class="lista-pratos">
       <li class="lista-pratos-item" v-for="prato of pratosComFiltro">
         <meu-painel :titulo="prato.titulo">
@@ -16,9 +15,11 @@
             :titulo="prato.titulo"
           ></imagem-pratos>
           <meu-botao
-            rotulo="Informação"
-            type="button"
-            @click.native="remove()"
+            rotulo="Remover"
+            tipo="button"
+            :confirmacao="false"
+            @botaoAtivado="remove(prato)"
+            estilo="perigo"
           ></meu-botao>
         </meu-painel>
       </li>
@@ -30,6 +31,8 @@
 import PainelPrato from "../shared/painelPrato/PainelPrato.vue";
 import ImagemPratos from "../shared/imagemPratos/ImagemPratos.vue";
 import Botao from "../shared/botao/Botao.vue";
+import PratoService from "../../domain/prato/PratoService";
+
 export default {
   components: {
     "meu-painel": PainelPrato,
@@ -57,19 +60,27 @@ export default {
   },
 
   methods: {
-    remove() {
-      alert("Precisa saber qual foto remover!");
+    remove(prato) {
+      this.service.apaga(prato._id).then(
+        () => {
+          let indice = this.pratos.indexOf(prato);
+          this.pratos.splice(indice, 1);
+          this.mensagem = "Prato removido com sucesso";
+        },
+        err => {
+          this.mensagem = "Não foi possível remover a foto";
+          console.log(err);
+        }
+      );
     }
   },
 
   created() {
-    this.$http
-      .get("http://localhost:3000/v1/pratos")
-      .then(res => res.json())
-      .then(
-        pratos => (this.pratos = pratos),
-        err => console.log(err)
-      );
+    this.service = new PratoService(this.$resource);
+    this.servise.lista().then(
+      pratos => (this.pratos = pratos),
+      err => console.log(err)
+    );
   }
 };
 </script>
