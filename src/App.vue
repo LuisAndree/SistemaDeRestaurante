@@ -1,9 +1,7 @@
 <template>
   <div class="corpo">
     <menu-principal :rotas="routes"></menu-principal>
-    <transition name="pagina">
       <router-view></router-view>
-    </transition>
   </div>
 </template>
 
@@ -17,7 +15,7 @@ export default {
 
   data() {
     return {
-      routes
+      routes: routes.filter(route => route.menu)
     };
   }
 };

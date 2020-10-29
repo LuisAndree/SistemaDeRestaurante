@@ -1,14 +1,15 @@
 export default class PratoService {
   constructor(resource) {
-    this._resource = resource('v1/pratos{/id}');
+    this._resource = resource("v1/pratos{/id}");
   }
 
   lista() {
+    console.log("ENTROU AQUI");
     return this._resource.query().then(
-      (res) => res.json(),
-      (err) => {
+      res => res.json(),
+      err => {
         console.log(err);
-        throw new Error('Não foi possível obter o cardapio');
+        throw new Error("Não foi possível obter as pratos. Tenta mais tarde");
       }
     );
   }
@@ -22,13 +23,13 @@ export default class PratoService {
   }
 
   apaga(id) {
-    return this._resource.delete({ id }).then(null, (err) => {
+    return this._resource.delete({ id }).then(null, err => {
       console.log(err);
-      throw new Error('Não foi possível remover o prato');
+      throw new Error("Não foi possível remover o prato");
     });
   }
 
   busca(id) {
-    return this._resource.get({ id }).then((res) => res.json());
+    return this._resource.get({ id }).then(res => res.json());
   }
 }

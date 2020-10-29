@@ -40,7 +40,7 @@
 
       <div class="centralizado">
         <meu-botao rotulo="GRAVAR" tipo="submit" />
-        <router-link to="/"
+        <router-link :to="{name: 'home'}"
           ><meu-botao rotulo="VOLTAR" tipo="button"
         /></router-link>
       </div>
@@ -52,7 +52,7 @@
 import ImagemPratos from "../shared/imagemPratos/ImagemPratos.vue";
 import Botao from "../shared/botao/Botao.vue";
 import Prato from "../../domain/prato/Prato";
-import PratoService from "../../domain/prato/PratoService"
+import PratoService from "../../domain/prato/PratoService";
 
 export default {
   components: {
@@ -63,35 +63,25 @@ export default {
   data() {
     return {
       prato: new Prato(),
-      resource: {}
+      id: this.$route.params.id
     };
   },
 
   methods: {
-    remove(prato) {
-
-      this.service
-        .apaga(prato._id)
-        .then(
-          () => {
-            let indice = this.pratos.indexOf(prato);
-            this.pratos.splice(indice, 1);
-            this.mensagem = 'Prato removido com sucesso'
-          },
-          err => {
-            this.mensagem = 'Não foi possível remover  prato';
-            console.log(err);
-          }
-        )
+    grava() {
+      this.service.cadastra(this.prato).then(
+        () => (this.prato = new Prato()),
+        err => console.log(err)
+      );
     }
   },
 
   created() {
     this.service = new PratoService(this.$resource);
 
-    this.service
-      .lista()
-      .then(pratos => this.pratos = pratos, err => console.log(err));
+    if (this.id) {
+      this.service.busca(this.id).then((prato) => (this.prato = prato));
+    }
   }
 };
 </script>

@@ -14,6 +14,14 @@
             :url="prato.url"
             :titulo="prato.titulo"
           ></imagem-pratos>
+          <router-link :to="{ name: 'cadastroDePratos', params:{id: prato._id}}">
+            <meu-botao
+            rotulo="Alterar"
+            tipo="button"
+            :confirmacao="false"
+            @botaoAtivado="(prato)"
+            estilo="padrao"/>
+          </router-link>
           <meu-botao
             rotulo="Remover"
             tipo="button"
@@ -77,9 +85,9 @@ export default {
 
   created() {
     this.service = new PratoService(this.$resource);
-    this.servise.lista().then(
+    this.service.lista().then(
       pratos => (this.pratos = pratos),
-      err => console.log(err)
+      err => (this.mensagem = err.message)
     );
   }
 };

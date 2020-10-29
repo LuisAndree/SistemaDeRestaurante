@@ -1,7 +1,7 @@
 export default class Prato {
-    constructor (titulo='', url='', descricao=''){
-        this.titulo = titulo;
-        this.url = url;
-        this.descricao = descricao;
-    }
+  constructor(titulo = '', url = '', descricao = '') {
+    this.titulo = titulo;
+    this.url = url;
+    this.descricao = descricao;
+  }
 }
