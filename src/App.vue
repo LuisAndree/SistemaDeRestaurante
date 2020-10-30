@@ -27,14 +27,14 @@ body, html{
 }
 
 body{
-  background-color: #EE8851;
+  background-color: #E07641;
 }
 
 .corpo {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0% auto;
   width: 100%;
-  background-color: white;
+  background-color: #FAB66E;
 }
 .pagina-enter-active,
 .pagina-leave-active {

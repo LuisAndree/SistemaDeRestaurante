@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="centralizado">Cadastro</h1>
+    <h1 class="centralizado">Cadastro e Uptade</h1>
     <h2 class="centralizado">{{ prato.titulo }}</h2>
     <form @submit.prevent="grava()">
       <div class="controle">
@@ -40,7 +40,7 @@
 
       <div class="centralizado">
         <meu-botao rotulo="GRAVAR" tipo="submit" />
-        <router-link :to="{name: 'home'}"
+        <router-link :to="{name: 'administracao'}"
           ><meu-botao rotulo="VOLTAR" tipo="button"
         /></router-link>
       </div>
@@ -86,8 +86,13 @@ export default {
 };
 </script>
 <style scoped>
+h1 {
+  font-style: italic;
+  color: #572d26;
+}
 .centralizado {
   text-align: center;
+  color: #FA2B05;
 }
 .controle {
   font-size: 1.2em;
@@ -100,7 +105,7 @@ export default {
 
 .controle label + input,
 .controle textarea {
-  width: 100%;
+  width: 50%;
   font-size: inherit;
   border-radius: 5px;
 }

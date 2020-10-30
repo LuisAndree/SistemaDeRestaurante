@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 class="centralizado">Restaurante Dona Leila</h1>
-    <h2 class="centralizado">Cardapio do dia</h2>
+    <h1 class="centralizado">Administração</h1>
     <input
       type="search"
       class="filtro"
@@ -15,17 +14,37 @@
             :url="prato.url"
             :titulo="prato.titulo"
           ></imagem-pratos>
-          <router-link :to="{ name: 'infoPratos', params:{id: prato._id}}">
+          <router-link
+            :to="{ name: 'cadastroDePratos', params: { id: prato._id } }"
+          >
             <meu-botao
-            rotulo="Informações"
+              rotulo="Update"
+              tipo="button"
+              :confirmacao="false"
+              @botaoAtivado="prato;"
+              estilo="alterar"
+            />
+          </router-link>
+          <meu-botao
+            rotulo="Remover"
             tipo="button"
             :confirmacao="false"
-            @botaoAtivado="(prato)"
-            estilo="padrao"/>
-          </router-link>
+            @botaoAtivado="remove(prato)"
+            estilo="perigo"
+          ></meu-botao>
         </meu-painel>
       </li>
     </ul>
+    <div class="centralizado">
+      <router-link :to="{ name: 'cadastroDePratos' }"
+        ><meu-botao
+          rotulo="Adicionar novo prato"
+          tipo="button"
+          :confirmacao="false"
+          @botaoAtivado="prato;"
+          estilo="alterar"
+      /></router-link>
+    </div>
   </div>
 </template>
 
@@ -63,20 +82,19 @@ export default {
 
   methods: {
     remove(prato) {
-      var resposta = confirm('Deseja apagar o prato realmente? s/n');
-      if(resposta == true){
-      this.service.apaga(prato._id).then(
-        () => {
-          let indice = this.pratos.indexOf(prato);
-          this.pratos.splice(indice, 1);
-          this.mensagem = "Prato removido com sucesso";
-        },
-        err => {
-          this.mensagem = "Não foi possível remover a foto";
-          console.log(err);
-        }
-
-      );
+      var resposta = confirm("Deseja apagar o prato realmente? s/n");
+      if (resposta == true) {
+        this.service.apaga(prato._id).then(
+          () => {
+            let indice = this.pratos.indexOf(prato);
+            this.pratos.splice(indice, 1);
+            this.mensagem = "Prato removido com sucesso";
+          },
+          err => {
+            this.mensagem = "Não foi possível remover a foto";
+            console.log(err);
+          }
+        );
       }
     }
   },

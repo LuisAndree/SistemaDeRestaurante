@@ -38,6 +38,7 @@ export default {
    estiloDoBotao(){
     if(this.estilo == 'padrao') return 'botao botao-padrao';
     if(this.estilo == 'perigo') return 'botao botao-perigo';
+    if(this.estilo == 'alterar') return 'botao botao-alterar'
    }
  }
 };
@@ -58,7 +59,12 @@ export default {
 }
 
 .botao-padrao {
-  background: darkcyan;
+  background: #FA2B05;
+  color: Black;
+}
+
+.botao-alterar {
+  background: mediumaquamarine;
   color: white;
 }
 </style>

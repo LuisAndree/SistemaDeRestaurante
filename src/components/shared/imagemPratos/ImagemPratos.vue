@@ -11,7 +11,7 @@ export default {
 <style scoped>
 .imagem-pratos {
   padding: 5px;
-  width: 95%;
-  height: 120px;
-}
+  width: 150px;
+  height: 100px;
+ }
 </style>

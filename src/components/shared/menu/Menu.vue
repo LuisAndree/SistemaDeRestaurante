@@ -1,12 +1,18 @@
 <template>
   <div class="menu">
     <nav>
-      <ul>
-        <li v-for="rota in rotas">
-          <router-link :to="rota.path ? rota.path : '/'">
-            {{ rota.titulo }}
+      <ul class="estiloLista">
+        <a>
+          <router-link :to="{ name: 'home'}">
+            Cardapio |
           </router-link>
-        </li>
+        </a>
+        <a>
+          <router-link :to="{ name: 'administracao'}">
+            Adiminstrão
+          </router-link>
+        </a>
+
       </ul>
     </nav>
   </div>
@@ -31,4 +37,13 @@ export default {
 li {
   padding: 5px;
 }
+
+.estiloLista {
+  background-color: white;
+  width: 20%;
+  padding: 5px;
+  border: 1px groove black;
+  text-align: center;
+}
+
 </style>
