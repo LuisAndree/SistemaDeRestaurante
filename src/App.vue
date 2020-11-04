@@ -1,16 +1,17 @@
 <template>
   <div class="corpo">
     <menu-principal :rotas="routes"></menu-principal>
-      <router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { routes } from "./routes.js";
 import Menu from "./components/shared/menu/Menu.vue";
+
 export default {
   components: {
-    'menu-principal': Menu
+    "menu-principal": Menu
   },
 
   data() {
@@ -22,19 +23,20 @@ export default {
 </script>
 
 <style>
-body, html{
+body,
+html {
   height: 100%;
 }
 
-body{
-  background-color: #E07641;
+body {
+  background-color: #e07641;
 }
 
 .corpo {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0% auto;
   width: 100%;
-  background-color: #FAB66E;
+  background-color: #fab66e;
 }
 .pagina-enter-active,
 .pagina-leave-active {

@@ -21,7 +21,7 @@
           id="url"
           autocomplete="off"
         />
-        <imagem-pratos
+        <imagem-pratos class="imagem-pratos"
           v-show="prato.url"
           :url="prato.url"
           :titulo="prato.titulo"
@@ -117,4 +117,10 @@ h1 {
 .erro {
   color: red;
 }
+
+.imagem-pratos {
+  padding: 5px;
+  width: 500px;
+  height: 350px;
+ }
 </style>

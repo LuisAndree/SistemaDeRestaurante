@@ -1,5 +1,5 @@
 <template>
-  <img class="imagem-pratos" :src="url" :alt="titulo" />
+  <img  :src="url" :alt="titulo" />
 </template>
 
 <script>
@@ -9,9 +9,5 @@ export default {
 </script>
 
 <style scoped>
-.imagem-pratos {
-  padding: 5px;
-  width: 150px;
-  height: 100px;
- }
+
 </style>

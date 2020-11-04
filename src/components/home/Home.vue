@@ -11,7 +11,7 @@
     <ul class="lista-pratos">
       <li class="lista-pratos-item" v-for="prato of pratosComFiltro">
         <meu-painel :titulo="prato.titulo">
-          <imagem-pratos
+          <imagem-pratos class="imagem-pratos"
             :url="prato.url"
             :titulo="prato.titulo"
           ></imagem-pratos>
@@ -115,4 +115,10 @@ h1 {
   margin: 20px;
   padding: 5px;
 }
+
+.imagem-pratos {
+  padding: 5px;
+  width: 150px;
+  height: 100px;
+ }
 </style>

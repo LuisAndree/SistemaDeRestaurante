@@ -10,7 +10,7 @@
     <ul class="lista-pratos">
       <li class="lista-pratos-item" v-for="prato of pratosComFiltro">
         <meu-painel :titulo="prato.titulo">
-          <imagem-pratos
+          <imagem-pratos class="imagem-pratos"
             :url="prato.url"
             :titulo="prato.titulo"
           ></imagem-pratos>
@@ -21,7 +21,7 @@
               rotulo="Update"
               tipo="button"
               :confirmacao="false"
-              @botaoAtivado="prato;"
+              @botaoAtivado="prato"
               estilo="alterar"
             />
           </router-link>
@@ -41,7 +41,6 @@
           rotulo="Adicionar novo prato"
           tipo="button"
           :confirmacao="false"
-          @botaoAtivado="prato;"
           estilo="alterar"
       /></router-link>
     </div>
@@ -133,4 +132,10 @@ h1 {
   margin: 20px;
   padding: 5px;
 }
+
+.imagem-pratos {
+  padding: 5px;
+  width: 150px;
+  height: 100px;
+ }
 </style>

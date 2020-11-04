@@ -4,7 +4,6 @@ export default class PratoService {
   }
 
   lista() {
-    console.log("ENTROU AQUI");
     return this._resource.query().then(
       res => res.json(),
       err => {
